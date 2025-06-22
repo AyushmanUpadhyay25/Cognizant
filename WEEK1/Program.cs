@@ -1,15 +1,22 @@
 ﻿using System;
 
-class Program
+namespace FactoryMethodPatternExample
 {
-    static void Main(string[] args)
+    class Program
     {
-        Logger logger1 = Logger.Instance;
-        logger1.Log("Ayushman");
+        static void Main(string[] args)
+        {
+            DocumentFactory wordFactory = new WordFactory();
+            IDocument word = wordFactory.CreateDocument();
+            word.Open();
 
-        Logger logger2 = Logger.Instance;
-        logger2.Log("Upadhyay");
+            DocumentFactory pdfFactory = new PdfFactory();
+            IDocument pdf = pdfFactory.CreateDocument();
+            pdf.Open();
 
-        Console.WriteLine("Is the logger instance same " + (logger1 == logger2));
+            DocumentFactory excelFactory = new ExcelFactory();
+            IDocument excel = excelFactory.CreateDocument();
+            excel.Open();
+        }
     }
 }
